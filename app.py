@@ -189,6 +189,9 @@ def calculate_accuracy(model, X_test, y_test):
     return accuracy
 
 # Define the route for receiving symptoms via POST request
+@app.route("/")
+def afd():
+    return "moye moye"
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
