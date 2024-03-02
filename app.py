@@ -38,7 +38,91 @@ disease = ['Fungal infection', 'Allergy', 'GERD', 'Chronic cholestasis', 'Drug R
            'Dimorphic hemorrhoids(piles)', 'Heart attack', 'Varicose veins', 'Hypothyroidism', 'Hyperthyroidism',
            'Hypoglycemia', 'Osteoarthritis', 'Arthritis', '(vertigo) Paroxysmal Positional Vertigo', 'Acne',
            'Urinary tract infection', 'Psoriasis', 'Impetigo']
-
+diet_dataset = {
+    'Fungal infection': 'Balanced Diet',
+    'Allergy': 'Elimination Diet',
+    'GERD': ['Low-Acid Diet', 'Fiber-rich Foods'],
+    'Chronic cholestasis': 'Low-Fat Diet',
+    'Drug Reaction': 'Consult with a healthcare professional',
+    'Peptic ulcer disease': 'Avoid spicy and acidic foods',
+    'AIDS': 'Nutrient-dense Diet',
+    'Diabetes': 'Balanced Diet with controlled carbohydrates',
+    'Gastroenteritis': 'BRAT Diet (Bananas, Rice, Applesauce, Toast)',
+    'Bronchial Asthma': 'Anti-inflammatory Diet',
+    'Hypertension': 'DASH Diet (Dietary Approaches to Stop Hypertension)',
+    ' Migraine': 'Migraine Diet (Avoiding trigger foods)',
+    'Cervical spondylosis': 'Anti-inflammatory Diet',
+    'Paralysis (brain hemorrhage)': 'Balanced Diet with emphasis on antioxidants',
+    'Jaundice': 'Low-Fat and Low-Protein Diet',
+    'Malaria': 'High-Protein Diet',
+    'Chicken pox': 'Soft and Easy-to-Swallow Foods',
+    'Dengue': 'Fluid and Nutrient-Rich Diet',
+    'Typhoid': 'Bland and Soft Diet',
+    'hepatitis A': 'Low-Fat Diet',
+    'Hepatitis B': 'Low-Fat Diet',
+    'Hepatitis C': 'Low-Fat Diet',
+    'Hepatitis D': 'Low-Fat Diet',
+    'Hepatitis E': 'Low-Fat Diet',
+    'Alcoholic hepatitis': 'Abstain from alcohol, Low-Fat Diet',
+    'Tuberculosis': 'High-Calorie and High-Protein Diet',
+    'Common Cold': 'Adequate Fluids, Vitamin C-rich Foods',
+    'Pneumonia': 'Balanced Diet with Protein',
+    'Dimorphic hemorrhoids (piles)': 'High-Fiber Diet',
+    'Heart attack': 'Heart-Healthy Diet (Low-Sodium, Low-Fat)',
+    'Varicose veins': 'High-Fiber Diet',
+    'Hypothyroidism': 'Iodine-rich Diet',
+    'Hyperthyroidism': 'Iodine-restricted Diet',
+    'Hypoglycemia': 'Frequent, Balanced Meals',
+    'Osteoarthritis': 'Anti-inflammatory Diet',
+    'Arthritis': 'Anti-inflammatory Diet',
+    '(Vertigo) Paroxysmal Positional Vertigo': 'Low-Salt Diet',
+    'Acne': 'Low-Glycemic Diet',
+    'Urinary tract infection': 'Adequate Fluids, Cranberry Juice',
+    'Psoriasis': 'Anti-inflammatory Diet',
+    'Impetigo': 'Balanced Diet with emphasis on Vitamins A and C'
+}
+doctors = {
+    'Fungal infection': 'Dermatologist',
+    'Allergy': 'Allergist/Immunologist',
+    'GERD': 'Gastroenterologist',
+    'Chronic cholestasis': 'Hepatologist',
+    'Drug Reaction': 'Allergist/Immunologist',
+    'Peptic ulcer diseae': 'Gastroenterologist',
+    'AIDS': 'Infectious Disease Specialist',
+    'Diabetes': 'Endocrinologist',
+    'Gastroenteritis': 'Gastroenterologist',
+    'Bronchial Asthma': 'Pulmonologist',
+    'Hypertension': 'Cardiologist',
+    ' Migraine': 'Neurologist',
+    'Cervical spondylosis': 'Orthopedic Surgeon',
+    'Paralysis (brain hemorrhage)': 'Neurologist',
+    'Jaundice': 'Hepatologist',
+    'Malaria': 'Infectious Disease Specialist',
+    'Chicken pox': 'Infectious Disease Specialist',
+    'Dengue': 'Infectious Disease Specialist',
+    'Typhoid': 'Infectious Disease Specialist',
+    'hepatitis A': 'Hepatologist',
+    'Hepatitis B': 'Hepatologist',
+    'Hepatitis C': 'Hepatologist',
+    'Hepatitis D': 'Hepatologist',
+    'Hepatitis E': 'Hepatologist',
+    'Alcoholic hepatitis': 'Hepatologist',
+    'Tuberculosis': 'Pulmonologist',
+    'Common Cold': 'Internal Medicine Specialist',
+    'Pneumonia': 'Pulmonologist',
+    'Dimorphic hemmorhoids(piles)': 'Proctologist',
+    'Heartattack': 'Cardiologist',
+    'Varicoseveins': 'Vascular Surgeon',
+    'Hypothyroidism': 'Endocrinologist',
+    'Hyperthyroidism': 'Endocrinologist',
+    'Hypoglycemia': 'Endocrinologist',
+    'Osteoarthristis': 'Rheumatologist',
+    'Arthritis': '(vertigo) Paroymsal  Positional Vertigo',
+    'Acne': 'Dermatologist',
+    'Urinary tract infection': 'Urologist',
+    'Psoriasis': 'Dermatologist',
+    'Impetigo': 'Dermatologist'
+}
 # Load training data
 df = pd.read_csv('Training.csv')
 df.replace({'prognosis': {'Fungal infection': 0, 'Allergy': 1, 'GERD': 2, 'Chronic cholestasis': 3,
@@ -131,16 +215,22 @@ def predict():
         }
         nb_models_accuracies ={
             "Naive Bayes Pred": naive_bayes_prediction,
-            "Accuracy":naive_bayes_accuracy
+            "Accuracy":naive_bayes_accuracy,
+            "Diets prescribed ": diet_dataset[naive_bayes_prediction],
+            "Doctor":doctors[naive_bayes_prediction]
         }
 
         dt_models_accuracies = {
             "Decision Tree Pred":decision_tree_prediction,
-            "Accuracy":decision_tree_accuracy
+            "Accuracy":decision_tree_accuracy,
+            "Diets prescribed ": diet_dataset[decision_tree_prediction],
+            "Doctor": doctors[decision_tree_prediction]
         }
         rf_models_accuracies ={
             "Random Forest Pred": random_forest_prediction,
-            "Accuracy":random_forest_accuracy
+            "Accuracy":random_forest_accuracy,
+            "Diets prescribed ": diet_dataset[naive_bayes_prediction],
+            "Doctor":doctors[random_forest_prediction]
         }
         
 
