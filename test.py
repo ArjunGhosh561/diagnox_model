@@ -3,7 +3,7 @@ from flask import Flask, jsonify, request
 import numpy as np
 from sklearn.metrics import accuracy_score
 import pandas as pd
-
+import pickle
 
 
 l1 = ['back pain', 'constipation', 'abdominal pain', 'diarrhoea', 'mild fever', 'yellow urine',
