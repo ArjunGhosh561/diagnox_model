@@ -251,11 +251,7 @@ def predict():
         return jsonify(nb_models_accuracies,dt_models_accuracies,rf_models_accuracies,result) 
 
     except Exception as e:
-        return jsonify({"Disease": str(e),
-                        "Doctor":doctors[str(e)],
-                        "diets":diet_dataset[str(e)]}
-                       )
-                        
+        return jsonify({"error": str(e)})
 
 if __name__ == '__main__':
     app.run(debug=True)
