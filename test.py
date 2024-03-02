@@ -1,9 +1,10 @@
 import streamlit as st
+from flask import Flask, jsonify, request
 import numpy as np
 from sklearn.metrics import accuracy_score
-
 import pandas as pd
-import pickle
+
+
 
 l1 = ['back pain', 'constipation', 'abdominal pain', 'diarrhoea', 'mild fever', 'yellow urine',
       'yellowing of eyes', 'acute liver failure', 'fluid overload', 'swelling of stomach',
@@ -185,16 +186,47 @@ def calculate_accuracy(model, X_test, y_test):
     y_pred = model.predict(X_test)
     accuracy = accuracy_score(y_test, y_pred)
     return accuracy
+ 
+ 
+# Flask app
+app = Flask(__name__)
+
+# Route for receiving JSON input and returning predictions
+@app.route('/predict', methods=['POST'])
+def predict():
+    try:
+        input_json = request.get_json()
+        symptoms = input_json.get("symptoms", [])
+    except Exception as e:
+        return jsonify({"error": f"Invalid JSON input: {str(e)}"}), 400
+
+    # Make predictions
+    prediction_result = predict_and_return_json(symptoms)
+
+    return jsonify(prediction_result)
+
+# Route for Streamlit UI
+@app.route('/ui', methods=['GET'])
+def streamlit_ui():
+    return st.html('<iframe width=1000 height=600 src="http://localhost:8501/"</iframe>')
 
 # Streamlit UI
 st.title("Disease Prediction System")
 st.write("Enter symptoms separated by commas (e.g., fever, headache)")
 
-user_input = st.text_input("Enter symptoms:", "")
+user_input = st.text_input("Enter symptoms (if any):", "")
 symptoms = [s.strip() for s in user_input.split(',')]
-print(type(symptoms))
 
 if st.button("Predict"):
+    # Make predictions and get results in JSON format
+    prediction_result = predict_and_return_json(symptoms)
+
+    # Display the result
+    st.subheader("Prediction Results:")
+    st.json(prediction_result)
+
+# Function to make predictions and return results in JSON format
+def predict_and_return_json(symptoms):
     # Decision Tree
     decision_tree_prediction = predict_disease(symptoms, clf3)
     decision_tree_accuracy = calculate_accuracy(clf3, X_test, np.ravel(y_test))
@@ -213,25 +245,6 @@ if st.button("Predict"):
         "Random Forest": random_forest_accuracy,
         "Naive Bayes": naive_bayes_accuracy
     }
-    nb_models_accuracies ={
-        "Naive Bayes Pred": naive_bayes_prediction,
-        "Accuracy":naive_bayes_accuracy,
-        "Diets prescribed ": diet_dataset[naive_bayes_prediction],
-        "Doctor":doctors[naive_bayes_prediction]
-    }
-
-    dt_models_accuracies = {
-        "Decision Tree Pred":decision_tree_prediction,
-        "Accuracy":decision_tree_accuracy,
-        "Diets prescribed ": diet_dataset[decision_tree_prediction],
-        "Doctor": doctors[decision_tree_prediction]
-    }
-    rf_models_accuracies ={
-        "Random Forest Pred": random_forest_prediction,
-        "Accuracy":random_forest_accuracy,
-        "Diets prescribed ": diet_dataset[naive_bayes_prediction],
-        "Doctor":doctors[random_forest_prediction]
-    }
 
     best_model = max(models_accuracies, key=models_accuracies.get)
     best_accuracy = models_accuracies[best_model]
@@ -243,27 +256,9 @@ if st.button("Predict"):
         "Best Prediction": best_prediction
     }
 
-    st.subheader("Prediction Results:")
-    st.write("Naive Bayes Model:")
-    st.write(f"Prediction: {naive_bayes_prediction}")
-    st.write(f"Accuracy: {naive_bayes_accuracy}")
-    st.write(f"Diets prescribed: {diet_dataset[naive_bayes_prediction]}")
-    st.write(f"Doctor: {doctors[naive_bayes_prediction]}")
+    return result
 
-    st.write("Decision Tree Model:")
-    st.write(f"Prediction: {decision_tree_prediction}")
-    st.write(f"Accuracy: {decision_tree_accuracy}")
-    st.write(f"Diets prescribed: {diet_dataset[decision_tree_prediction]}")
-    st.write(f"Doctor: {doctors[decision_tree_prediction]}")
-
-    st.write("Random Forest Model:")
-    st.write(f"Prediction: {random_forest_prediction}")
-    st.write(f"Accuracy: {random_forest_accuracy}")
-    st.write(f"Diets prescribed: {diet_dataset[naive_bayes_prediction]}")
-    st.write(f"Doctor: {doctors[random_forest_prediction]}")
-
-    st.write("Best Model:")
-    st.write(f"Model: {best_model}")
-    st.write(f"Accuracy: {best_accuracy}")
-    st.write(f"Prediction: {best_prediction}")
-
+# Run the app
+if __name__ == '__main__':
+    app.run(port=5000)  # Choose a port for Flask app
+    st.experimental_rerun()  # Rerun Streamlit app after Flask app starts
