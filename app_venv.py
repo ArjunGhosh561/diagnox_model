@@ -1,13 +1,16 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS  # Import CORS from flask_cors module
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
 import pickle
+from sklearn.tree import DecisionTreeClassifier
+
 
 app = Flask(__name__)
-
+CORS(app)
 l1 = ['back pain', 'constipation', 'abdominal pain', 'diarrhoea', 'mild fever', 'yellow urine',
       'yellowing of eyes', 'acute liver failure', 'fluid overload', 'swelling of stomach',
       'swelled lymph nodes', 'malaise', 'blurred and distorted vision', 'phlegm', 'throat irritation',
@@ -164,7 +167,8 @@ def load_model(filename):
     with open(filename, 'rb') as file:
         model = pickle.load(file)
     return model
-
+# Specify monotonic constraints for features
+monotonic_constraints = [0, 1, -1, 1, 0, 0, ...]  # Replace ... with the constraints for other features
 clf3 = load_model('decision_tree_model.pkl')
 clf4 = load_model('random_forest_model.pkl')
 gnb = load_model('naive_bayes_model.pkl')
@@ -218,37 +222,35 @@ def predict():
         }
         nb_models_accuracies ={
             "Naive Bayes Pred": naive_bayes_prediction,
-            "Accuracy":naive_bayes_accuracy,
+            "Accuracy": naive_bayes_accuracy,
             "Diets prescribed ": diet_dataset[naive_bayes_prediction],
-            "Doctor":doctors[naive_bayes_prediction]
+            "Doctor": doctors[naive_bayes_prediction]
         }
 
         dt_models_accuracies = {
-            "Decision Tree Pred":decision_tree_prediction,
-            "Accuracy":decision_tree_accuracy,
+            "Decision Tree Pred": decision_tree_prediction,
+            "Accuracy": decision_tree_accuracy,
             "Diets prescribed ": diet_dataset[decision_tree_prediction],
             "Doctor": doctors[decision_tree_prediction]
         }
         rf_models_accuracies ={
             "Random Forest Pred": random_forest_prediction,
-            "Accuracy":random_forest_accuracy,
+            "Accuracy": random_forest_accuracy,
             "Diets prescribed ": diet_dataset[naive_bayes_prediction],
-            "Doctor":doctors[random_forest_prediction]
+            "Doctor": doctors[random_forest_prediction]
         }
-        
 
         best_model = max(models_accuracies, key=models_accuracies.get)
         best_accuracy = models_accuracies[best_model]
         best_prediction = locals()[f"{best_model.lower().replace(' ', '_')}_prediction"]
-        
+
         result = {
             "Best Model": best_model,
             "Best Accuracy": best_accuracy,
             "Best Prediction": best_prediction
         }
-        
 
-        return jsonify(nb_models_accuracies,dt_models_accuracies,rf_models_accuracies,result) 
+        return jsonify(nb_models_accuracies, dt_models_accuracies, rf_models_accuracies, result)
 
     except Exception as e:
         return jsonify({"error": str(e)})
