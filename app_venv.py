@@ -216,28 +216,31 @@ def predict():
 
         # Choose the model with the highest accuracy
         models_accuracies = {
-            "Decision Tree": decision_tree_accuracy,
-            "Random Forest": random_forest_accuracy,
-            "Naive Bayes": naive_bayes_accuracy
+           "decisionTree": decision_tree_accuracy,
+           "randomForest": random_forest_accuracy,
+            "naiveBayes": naive_bayes_accuracy
         }
         nb_models_accuracies ={
-            "Naive Bayes Pred": naive_bayes_prediction,
-            "Accuracy": naive_bayes_accuracy,
-            "Diets prescribed ": diet_dataset[naive_bayes_prediction],
-            "Doctor": doctors[naive_bayes_prediction]
+           "naiveBayesPred": naive_bayes_prediction,
+"accuracy": naive_bayes_accuracy,
+"dietsPrescribed": diet_dataset[naive_bayes_prediction],
+"doctor": doctors[naive_bayes_prediction]
+
         }
 
         dt_models_accuracies = {
-            "Decision Tree Pred": decision_tree_prediction,
-            "Accuracy": decision_tree_accuracy,
-            "Diets prescribed ": diet_dataset[decision_tree_prediction],
-            "Doctor": doctors[decision_tree_prediction]
+           "decisionTreePred": decision_tree_prediction,
+"accuracy": decision_tree_accuracy,
+"dietsPrescribed": diet_dataset[decision_tree_prediction],
+"doctor": doctors[decision_tree_prediction]
+
         }
         rf_models_accuracies ={
-            "Random Forest Pred": random_forest_prediction,
-            "Accuracy": random_forest_accuracy,
-            "Diets prescribed ": diet_dataset[naive_bayes_prediction],
-            "Doctor": doctors[random_forest_prediction]
+            "randomForestPred": random_forest_prediction,
+"accuracy": random_forest_accuracy,
+"dietsPrescribed": diet_dataset[naive_bayes_prediction],
+"doctor": doctors[random_forest_prediction]
+
         }
 
         best_model = max(models_accuracies, key=models_accuracies.get)
@@ -245,10 +248,11 @@ def predict():
         best_prediction = locals()[f"{best_model.lower().replace(' ', '_')}_prediction"]
 
         result = {
-            "Best Model": best_model,
-            "Best Accuracy": best_accuracy,
-            "Best Prediction": best_prediction
+            "bestModel": best_model,
+"bestAccuracy": best_accuracy,
+"bestPrediction": best_prediction
         }
+
 
         return jsonify(nb_models_accuracies, dt_models_accuracies, rf_models_accuracies, result)
 
