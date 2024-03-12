@@ -31,13 +31,56 @@ l1 = ['back pain', 'constipation', 'abdominal pain', 'diarrhoea', 'mild fever', 
       'yellow crust ooze']
 
 disease = ['Fungal infection', 'Allergy', 'GERD', 'Chronic cholestasis', 'Drug Reaction',
-           'Peptic ulcer disease', 'AIDS', 'Diabetes', 'Gastroenteritis', 'Bronchial Asthma', 'Hypertension',
-           'Migraine', 'Cervical spondylosis', 'Paralysis (brain hemorrhage)', 'Jaundice', 'Malaria',
-           'Chicken pox', 'Dengue', 'Typhoid', 'hepatitis A', 'Hepatitis B', 'Hepatitis C', 'Hepatitis D',
-           'Hepatitis E', 'Alcoholic hepatitis', 'Tuberculosis', 'Common Cold', 'Pneumonia',
-           'Dimorphic hemorrhoids(piles)', 'Heart attack', 'Varicose veins', 'Hypothyroidism', 'Hyperthyroidism',
-           'Hypoglycemia', 'Osteoarthritis', 'Arthritis', '(vertigo) Paroxysmal Positional Vertigo', 'Acne',
-           'Urinary tract infection', 'Psoriasis', 'Impetigo']
+           'Peptic ulcer diseae', 'AIDS', 'Diabetes', 'Gastroenteritis', 'Bronchial Asthma', 'Hypertension',
+           ' Migraine', 'Cervical spondylosis',
+           'Paralysis (brain hemorrhage)', 'Jaundice', 'Malaria', 'Chicken pox', 'Dengue', 'Typhoid', 'hepatitis A',
+           'Hepatitis B', 'Hepatitis C', 'Hepatitis D', 'Hepatitis E', 'Alcoholic hepatitis', 'Tuberculosis',
+           'Common Cold', 'Pneumonia', 'Dimorphic hemmorhoids(piles)',
+           'Heartattack', 'Varicoseveins', 'Hypothyroidism', 'Hyperthyroidism', 'Hypoglycemia', 'Osteoarthristis',
+           'Arthritis', '(vertigo) Paroymsal  Positional Vertigo', 'Acne', 'Urinary tract infection', 'Psoriasis',
+           'Impetigo']
+doctors = {
+    'Fungal infection': 'Dermatologist',
+    'Allergy': 'Allergist/Immunologist',
+    'GERD': 'Gastroenterologist',
+    'Chronic cholestasis': 'Hepatologist',
+    'Drug Reaction': 'Allergist/Immunologist',
+    'Peptic ulcer diseae': 'Gastroenterologist',
+    'AIDS': 'Infectious Disease Specialist',
+    'Diabetes': 'Endocrinologist',
+    'Gastroenteritis': 'Gastroenterologist',
+    'Bronchial Asthma': 'Pulmonologist',
+    'Hypertension': 'Cardiologist',
+    ' Migraine': 'Neurologist',
+    'Cervical spondylosis': 'Orthopedic Surgeon',
+    'Paralysis (brain hemorrhage)': 'Neurologist',
+    'Jaundice': 'Hepatologist',
+    'Malaria': 'Infectious Disease Specialist',
+    'Chicken pox': 'Infectious Disease Specialist',
+    'Dengue': 'Infectious Disease Specialist',
+    'Typhoid': 'Infectious Disease Specialist',
+    'hepatitis A': 'Hepatologist',
+    'Hepatitis B': 'Hepatologist',
+    'Hepatitis C': 'Hepatologist',
+    'Hepatitis D': 'Hepatologist',
+    'Hepatitis E': 'Hepatologist',
+    'Alcoholic hepatitis': 'Hepatologist',
+    'Tuberculosis': 'Pulmonologist',
+    'Common Cold': 'Internal Medicine Specialist',
+    'Pneumonia': 'Pulmonologist',
+    'Dimorphic hemmorhoids(piles)': 'Proctologist',
+    'Heartattack': 'Cardiologist',
+    'Varicoseveins': 'Vascular Surgeon',
+    'Hypothyroidism': 'Endocrinologist',
+    'Hyperthyroidism': 'Endocrinologist',
+    'Hypoglycemia': 'Endocrinologist',
+    'Osteoarthristis': 'Rheumatologist',
+    'Arthritis': '(vertigo) Paroymsal  Positional Vertigo',
+    'Acne': 'Dermatologist',
+    'Urinary tract infection': 'Urologist',
+    'Psoriasis': 'Dermatologist',
+    'Impetigo': 'Dermatologist'
+}
 diet_dataset = {
     'Fungal infection': 'Balanced Diet',
     'Allergy': 'Elimination Diet',
@@ -81,62 +124,67 @@ diet_dataset = {
     'Psoriasis': 'Anti-inflammatory Diet',
     'Impetigo': 'Balanced Diet with emphasis on Vitamins A and C'
 }
-doctors = {
-    'Fungal infection': 'Dermatologist',
-    'Allergy': 'Allergist/Immunologist',
-    'GERD': 'Gastroenterologist',
-    'Chronic cholestasis': 'Hepatologist',
-    'Drug Reaction': 'Allergist/Immunologist',
-    'Peptic ulcer diseae': 'Gastroenterologist',
-    'AIDS': 'Infectious Disease Specialist',
-    'Diabetes': 'Endocrinologist',
-    'Gastroenteritis': 'Gastroenterologist',
-    'Bronchial Asthma': 'Pulmonologist',
-    'Hypertension': 'Cardiologist',
-    ' Migraine': 'Neurologist',
-    'Cervical spondylosis': 'Orthopedic Surgeon',
-    'Paralysis (brain hemorrhage)': 'Neurologist',
-    'Jaundice': 'Hepatologist',
-    'Malaria': 'Infectious Disease Specialist',
-    'Chicken pox': 'Infectious Disease Specialist',
-    'Dengue': 'Infectious Disease Specialist',
-    'Typhoid': 'Infectious Disease Specialist',
-    'hepatitis A': 'Hepatologist',
-    'Hepatitis B': 'Hepatologist',
-    'Hepatitis C': 'Hepatologist',
-    'Hepatitis D': 'Hepatologist',
-    'Hepatitis E': 'Hepatologist',
-    'Alcoholic hepatitis': 'Hepatologist',
-    'Tuberculosis': 'Pulmonologist',
-    'Common Cold': 'Internal Medicine Specialist',
-    'Pneumonia': 'Pulmonologist',
-    'Dimorphic hemmorhoids(piles)': 'Proctologist',
-    'Heartattack': 'Cardiologist',
-    'Varicoseveins': 'Vascular Surgeon',
-    'Hypothyroidism': 'Endocrinologist',
-    'Hyperthyroidism': 'Endocrinologist',
-    'Hypoglycemia': 'Endocrinologist',
-    'Osteoarthristis': 'Rheumatologist',
-    'Arthritis': '(vertigo) Paroymsal  Positional Vertigo',
-    'Acne': 'Dermatologist',
-    'Urinary tract infection': 'Urologist',
-    'Psoriasis': 'Dermatologist',
-    'Impetigo': 'Dermatologist'
+diet_dataset = {
+    'Fungal infection': 'Balanced Diet',
+    'Allergy': 'Elimination Diet',
+    'GERD': ['Low-Acid Diet', 'Fiber-rich Foods'],
+    'Chronic cholestasis': 'Low-Fat Diet',
+    'Drug Reaction': 'Consult with a healthcare professional',
+    'Peptic ulcer diseae': 'Avoid spicy and acidic foods',
+    'AIDS': 'Nutrient-dense Diet',
+    'Diabetes': 'Balanced Diet with controlled carbohydrates',
+    'Gastroenteritis': 'BRAT Diet (Bananas, Rice, Applesauce, Toast)',
+    'Bronchial Asthma': 'Anti-inflammatory Diet',
+    'Hypertension': 'DASH Diet (Dietary Approaches to Stop Hypertension)',
+    ' Migraine': 'Migraine Diet (Avoiding trigger foods)',
+    'Cervical spondylosis': 'Anti-inflammatory Diet',
+    'Paralysis (brain hemorrhage)': 'Balanced Diet with emphasis on antioxidants',
+    'Jaundice': 'Low-Fat and Low-Protein Diet',
+    'Malaria': 'High-Protein Diet',
+    'Chicken pox': 'Soft and Easy-to-Swallow Foods',
+    'Dengue': 'Fluid and Nutrient-Rich Diet',
+    'Typhoid': 'Bland and Soft Diet',
+    'hepatitis A': 'Low-Fat Diet',
+    'Hepatitis B': 'Low-Fat Diet',
+    'Hepatitis C': 'Low-Fat Diet',
+    'Hepatitis D': 'Low-Fat Diet',
+    'Hepatitis E': 'Low-Fat Diet',
+    'Alcoholic hepatitis': 'Abstain from alcohol, Low-Fat Diet',
+    'Tuberculosis': 'High-Calorie and High-Protein Diet',
+    'Common Cold': 'Adequate Fluids, Vitamin C-rich Foods',
+    'Pneumonia': 'Balanced Diet with Protein',
+    'Dimorphic hemmorhoids(piles)': 'High-Fiber Diet',
+    'Heartattack': 'Heart-Healthy Diet (Low-Sodium, Low-Fat)',
+    'Varicoseveins': 'High-Fiber Diet',
+    'Hypothyroidism': 'Iodine-rich Diet',
+    'Hyperthyroidism': 'Iodine-restricted Diet',
+    'Hypoglycemia': 'Frequent, Balanced Meals',
+    'Osteoarthristis': 'Anti-inflammatory Diet',
+    'Arthritis': 'Anti-inflammatory Diet',
+    '(vertigo) Paroymsal  Positional Vertigo': 'Low-Salt Diet',
+    'Acne': 'Low-Glycemic Diet',
+    'Urinary tract infection': 'Adequate Fluids, Cranberry Juice',
+    'Psoriasis': 'Anti-inflammatory Diet',
+    'Impetigo': 'Balanced Diet with emphasis on Vitamins A and C'
 }
+
+
 # Load training data
 df = pd.read_csv('Training.csv')
-df.replace({'prognosis': {'Fungal infection': 0, 'Allergy': 1, 'GERD': 2, 'Chronic cholestasis': 3,
-                          'Drug Reaction': 4, 'Peptic ulcer diseae': 5, 'AIDS': 6, 'Diabetes ': 7,
-                          'Gastroenteritis': 8, 'Bronchial Asthma': 9, 'Hypertension ': 10,
-                          'Migraine': 11, 'Cervical spondylosis': 12, 'Paralysis (brain hemorrhage)': 13,
-                          'Jaundice': 14, 'Malaria': 15, 'Chicken pox': 16, 'Dengue': 17, 'Typhoid': 18,
-                          'hepatitis A': 19, 'Hepatitis B': 20, 'Hepatitis C': 21, 'Hepatitis D': 22,
-                          'Hepatitis E': 23, 'Alcoholic hepatitis': 24, 'Tuberculosis': 25, 'Common Cold': 26,
-                          'Pneumonia': 27, 'Dimorphic hemmorhoids(piles)': 28, 'Heart attack': 29,
-                          'Varicose veins': 30, 'Hypothyroidism': 31, 'Hyperthyroidism': 32, 'Hypoglycemia': 33,
-                          'Osteoarthristis': 34, 'Arthritis': 35, '(vertigo) Paroymsal  Positional Vertigo': 36,
-                          'Acne': 37, 'Urinary tract infection': 38, 'Psoriasis': 39, 'Impetigo': 40}},
-           inplace=True)
+df.replace({'prognosis': {'Fungal infection': 0, 'Allergy': 1, 'GERD': 2, 'Chronic cholestasis': 3, 'Drug Reaction': 4,
+                          'Peptic ulcer diseae': 5, 'AIDS': 6, 'Diabetes ': 7, 'Gastroenteritis': 8,
+                          'Bronchial Asthma': 9, 'Hypertension ': 10,
+                          'Migraine': 11, 'Cervical spondylosis': 12,
+                          'Paralysis (brain hemorrhage)': 13, 'Jaundice': 14, 'Malaria': 15, 'Chicken pox': 16,
+                          'Dengue': 17, 'Typhoid': 18, 'hepatitis A': 19,
+                          'Hepatitis B': 20, 'Hepatitis C': 21, 'Hepatitis D': 22, 'Hepatitis E': 23,
+                          'Alcoholic hepatitis': 24, 'Tuberculosis': 25,
+                          'Common Cold': 26, 'Pneumonia': 27, 'Dimorphic hemmorhoids(piles)': 28,
+                          'Heart attack': 29, 'Varicose veins': 30, 'Hypothyroidism': 31,
+                          'Hyperthyroidism': 32, 'Hypoglycemia': 33, 'Osteoarthristis': 34, 'Arthritis': 35,
+                          '(vertigo) Paroymsal  Positional Vertigo': 36, 'Acne': 37,
+                          'Urinary tract infection': 38, 'Psoriasis': 39,
+                          'Impetigo': 40}}, inplace=True)
 X = df[l1]
 y = df[["prognosis"]]
 np.ravel(y)
@@ -196,56 +244,83 @@ def predict():
         symptoms = [s.strip() for s in user_input.split(',')]
 
         # Decision Tree
-        decision_tree_prediction = predict_disease(symptoms, clf3)
-        decision_tree_accuracy = calculate_accuracy(clf3, X_test, np.ravel(y_test))
+        print(f'Input Data: {X_test.iloc[0]}') 
+        decisiontreeprediction = predict_disease(symptoms, clf3)
+        print(f'Decision Tree Prediction: {decisiontreeprediction}')
+
+        decisiontreeaccuracy = calculate_accuracy(clf3, X_test, np.ravel(y_test))
 
         # Random Forest
-        random_forest_prediction = predict_disease(symptoms, clf4)
-        random_forest_accuracy = calculate_accuracy(clf4, X_test, np.ravel(y_test))
+        randomforestprediction = predict_disease(symptoms, clf4)
+        randomforestaccuracy = calculate_accuracy(clf4, X_test, np.ravel(y_test))
+        print(f'Random Forest Prediction: {randomforestprediction}')
 
         # Naive Bayes
-        naive_bayes_prediction = predict_disease(symptoms, gnb)
-        naive_bayes_accuracy = calculate_accuracy(gnb, X_test, np.ravel(y_test))
+        naivebayesprediction = predict_disease(symptoms, gnb)
+        naivebayesaccuracy = calculate_accuracy(gnb, X_test, np.ravel(y_test))
+        print(f'Naive Bayes Prediction: {naivebayesprediction}')
+           # Check if all predictions are the same
+        if all(pred == decisiontreeprediction for pred in [randomforestprediction, naivebayesprediction]):
+            # Return the common prediction without raising an error
+            commonprediction = decisiontreeprediction
+           
+            print(commonprediction)
+        
 
+            commonresult = {
+                "CommonPrediction": commonprediction,
+                "Accuracy": decisiontreeaccuracy, # You can choose any accuracy here
+                "DietsPrescribed": diet_dataset[commonprediction],
+                "Doctor": doctors[commonprediction]
+                
+
+            }
+            
+            return jsonify(commonresult)
+        elif any(pred == decisiontreeprediction for pred in [randomforestprediction, naivebayesprediction]):
+        # Handle the case where at least two models predict the same disease
+            commonprediction = decisiontreeprediction  # or randomforestprediction, or naivebayesprediction (they are all the same)
+            othermodelpredictions = [pred for pred in [randomforestprediction, naivebayesprediction] if pred != commonprediction]
+
+            result = {
+                "CommonPrediction": commonprediction,
+                "OtherPredictions": othermodelpredictions,
+                # Add other information you want to include...
+            }
+            return jsonify(result)        
+                    
+            
         # Choose the model with the highest accuracy
-        models_accuracies = {
-            "Decision Tree": decision_tree_accuracy,
-            "Random Forest": random_forest_accuracy,
-            "Naive Bayes": naive_bayes_accuracy
+        modelsaccuracies = {
+            "DecisionTree": decisiontreeaccuracy,
+            "RandomForest": randomforestaccuracy,
+            "NaiveBayes": naivebayesaccuracy
         }
-        nb_models_accuracies ={
-            "Naive Bayes Pred": naive_bayes_prediction,
-            "Accuracy":naive_bayes_accuracy,
-            "Diets prescribed ": diet_dataset[naive_bayes_prediction],
-            "Doctor":doctors[naive_bayes_prediction]
+        nbmodelsaccuracies ={
+            "NaiveBayesPred": naivebayesprediction,
+            "Accuracy":naivebayesaccuracy,
+            "Dietsprescribed ": diet_dataset[naivebayesprediction],
+            "Doctor":doctors[naivebayesprediction]
         }
 
-        dt_models_accuracies = {
-            "Decision Tree Pred":decision_tree_prediction,
-            "Accuracy":decision_tree_accuracy,
-            "Diets prescribed ": diet_dataset[decision_tree_prediction],
-            "Doctor": doctors[decision_tree_prediction]
+        dtmodelsaccuracies = {
+            "DecisionTreePred":decisiontreeprediction,
+            "Accuracy":decisiontreeaccuracy,
+            "Dietsprescribed ": diet_dataset[decisiontreeprediction],
+            "Doctor": doctors[decisiontreeprediction]
         }
-        rf_models_accuracies ={
-            "Random Forest Pred": random_forest_prediction,
-            "Accuracy":random_forest_accuracy,
-            "Diets prescribed ": diet_dataset[naive_bayes_prediction],
-            "Doctor":doctors[random_forest_prediction]
+        rfmodelsaccuracies ={
+            "RandomForestPred": randomforestprediction,
+            "Accuracy":randomforestaccuracy,
+            "Dietsprescribed ": diet_dataset[naivebayesprediction],
+            "Doctor":doctors[randomforestprediction]
         }
         
 
-        best_model = max(models_accuracies, key=models_accuracies.get)
-        best_accuracy = models_accuracies[best_model]
-        best_prediction = locals()[f"{best_model.lower().replace(' ', '_')}_prediction"]
         
-        result = {
-            "Best Model": best_model,
-            "Best Accuracy": best_accuracy,
-            "Best Prediction": best_prediction
-        }
         
 
-        return jsonify(nb_models_accuracies,dt_models_accuracies,rf_models_accuracies,result) 
+        return jsonify(modelsaccuracies,nbmodelsaccuracies,dtmodelsaccuracies,rfmodelsaccuracies) 
 
     except Exception as e:
         return jsonify({"error": str(e)})
