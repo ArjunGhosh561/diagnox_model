@@ -236,10 +236,13 @@ def predict():
         # Handle the case where at least two models predict the same disease
             commonprediction = decisiontreeprediction  # or randomforestprediction, or naivebayesprediction (they are all the same)
             othermodelpredictions = [pred for pred in [randomforestprediction, naivebayesprediction] if pred != commonprediction]
-
+            otherprediction = None
+            if othermodelpredictions:
+                otherprediction = othermodelpredictions[0]
+                
             result = {
                 "CommonPrediction": commonprediction,
-                "OtherPredictions": othermodelpredictions,
+                "OtherPredictions": otherprediction
                 # Add other information you want to include...
             }
             return jsonify(result)        
