@@ -81,49 +81,7 @@ doctors = {
     'Psoriasis': 'Dermatologist',
     'Impetigo': 'Dermatologist'
 }
-diet_dataset = {
-    'Fungal infection': 'Balanced Diet',
-    'Allergy': 'Elimination Diet',
-    'GERD': ['Low-Acid Diet', 'Fiber-rich Foods'],
-    'Chronic cholestasis': 'Low-Fat Diet',
-    'Drug Reaction': 'Consult with a healthcare professional',
-    'Peptic ulcer disease': 'Avoid spicy and acidic foods',
-    'AIDS': 'Nutrient-dense Diet',
-    'Diabetes': 'Balanced Diet with controlled carbohydrates',
-    'Gastroenteritis': 'BRAT Diet (Bananas, Rice, Applesauce, Toast)',
-    'Bronchial Asthma': 'Anti-inflammatory Diet',
-    'Hypertension': 'DASH Diet (Dietary Approaches to Stop Hypertension)',
-    ' Migraine': 'Migraine Diet (Avoiding trigger foods)',
-    'Cervical spondylosis': 'Anti-inflammatory Diet',
-    'Paralysis (brain hemorrhage)': 'Balanced Diet with emphasis on antioxidants',
-    'Jaundice': 'Low-Fat and Low-Protein Diet',
-    'Malaria': 'High-Protein Diet',
-    'Chicken pox': 'Soft and Easy-to-Swallow Foods',
-    'Dengue': 'Fluid and Nutrient-Rich Diet',
-    'Typhoid': 'Bland and Soft Diet',
-    'hepatitis A': 'Low-Fat Diet',
-    'Hepatitis B': 'Low-Fat Diet',
-    'Hepatitis C': 'Low-Fat Diet',
-    'Hepatitis D': 'Low-Fat Diet',
-    'Hepatitis E': 'Low-Fat Diet',
-    'Alcoholic hepatitis': 'Abstain from alcohol, Low-Fat Diet',
-    'Tuberculosis': 'High-Calorie and High-Protein Diet',
-    'Common Cold': 'Adequate Fluids, Vitamin C-rich Foods',
-    'Pneumonia': 'Balanced Diet with Protein',
-    'Dimorphic hemorrhoids (piles)': 'High-Fiber Diet',
-    'Heart attack': 'Heart-Healthy Diet (Low-Sodium, Low-Fat)',
-    'Varicose veins': 'High-Fiber Diet',
-    'Hypothyroidism': 'Iodine-rich Diet',
-    'Hyperthyroidism': 'Iodine-restricted Diet',
-    'Hypoglycemia': 'Frequent, Balanced Meals',
-    'Osteoarthritis': 'Anti-inflammatory Diet',
-    'Arthritis': 'Anti-inflammatory Diet',
-    '(Vertigo) Paroxysmal Positional Vertigo': 'Low-Salt Diet',
-    'Acne': 'Low-Glycemic Diet',
-    'Urinary tract infection': 'Adequate Fluids, Cranberry Juice',
-    'Psoriasis': 'Anti-inflammatory Diet',
-    'Impetigo': 'Balanced Diet with emphasis on Vitamins A and C'
-}
+
 diet_dataset = {
     'Fungal infection': 'Balanced Diet',
     'Allergy': 'Elimination Diet',
@@ -262,19 +220,16 @@ def predict():
            # Check if all predictions are the same
         if all(pred == decisiontreeprediction for pred in [randomforestprediction, naivebayesprediction]):
             # Return the common prediction without raising an error
-            commonprediction = decisiontreeprediction
+            result = decisiontreeprediction
            
-            print(commonprediction)
-        
-
             commonresult = {
-                "CommonPrediction": commonprediction,
+                "result": result,
                 "Accuracy": decisiontreeaccuracy, # You can choose any accuracy here
-                "DietsPrescribed": diet_dataset[commonprediction],
-                "Doctor": doctors[commonprediction]
-                
+                "DietsPrescribed": diet_dataset[result],
+                "Doctor": doctors[result]
+                }
 
-            }
+            
             
             return jsonify(commonresult)
         elif any(pred == decisiontreeprediction for pred in [randomforestprediction, naivebayesprediction]):
