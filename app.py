@@ -243,12 +243,21 @@ def predict():
             if othermodelpredictions:
                 otherprediction = othermodelpredictions[0]
                 
-            result = {
+            result1 = {
                 "CommonPrediction": commonprediction,
-                "OtherPredictions": otherprediction
-                # Add other information you want to include...
+                
+                "CommonPredictionAccuracy": calculate_accuracy(clf3, X_test, np.ravel(y_test)),  # Assuming you want the accuracy of the common prediction
+                "DietsPrescribed": diet_dataset[commonprediction],
+                "Doctor": doctors[commonprediction]
+                  # You can choose any other model for accuracy
             }
-            return jsonify(result)        
+            result2={
+                "OtherPredictions": otherprediction,
+                "OtherPredictionAccuracy": calculate_accuracy(clf4, X_test, np.ravel(y_test)),
+                "DietsPrescribed": diet_dataset[otherprediction],
+                "Doctor": doctors[otherprediction]
+            } 
+            return jsonify(result1,result2)        
                     
             
         # Choose the model with the highest accuracy
@@ -281,7 +290,7 @@ def predict():
         
         
 
-        return jsonify(modelsaccuracies,nbmodelsaccuracies,dtmodelsaccuracies,rfmodelsaccuracies) 
+        return jsonify(nbmodelsaccuracies,dtmodelsaccuracies,rfmodelsaccuracies) 
 
     except Exception as e:
         return jsonify({"error": str(e)})
