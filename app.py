@@ -5,8 +5,11 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
 import pickle
+from flask import Flask, request, jsonify
+from flask_cors import CORS  
 
 app = Flask(__name__)
+CORS(app) 
 
 l1 = ['back pain', 'constipation', 'abdominal pain', 'diarrhoea', 'mild fever', 'yellow urine',
       'yellowing of eyes', 'acute liver failure', 'fluid overload', 'swelling of stomach',
