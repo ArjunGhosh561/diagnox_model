@@ -232,9 +232,10 @@ def predict():
                 "Doctor": doctors[result]
                 }
 
+            answer=[]
+            answer.append(commonresult)
             
-            
-            return jsonify(commonresult)
+            return jsonify(answer)
         elif any(pred == decisiontreeprediction for pred in [randomforestprediction, naivebayesprediction]):
         # Handle the case where at least two models predict the same disease
             commonprediction = decisiontreeprediction  # or randomforestprediction, or naivebayesprediction (they are all the same)
