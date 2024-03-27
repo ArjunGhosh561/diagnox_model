@@ -247,14 +247,14 @@ def predict():
             result1 = {
                 "CommonPrediction": commonprediction,
                 
-                "CommonPredictionAccuracy": calculate_accuracy(clf3, X_test, np.ravel(y_test)),  # Assuming you want the accuracy of the common prediction
+                "Accuracy": calculate_accuracy(clf3, X_test, np.ravel(y_test)),  # Assuming you want the accuracy of the common prediction
                 "DietsPrescribed": diet_dataset[commonprediction],
                 "Doctor": doctors[commonprediction]
                   # You can choose any other model for accuracy
             }
             result2={
                 "OtherPredictions": otherprediction,
-                "OtherPredictionAccuracy": calculate_accuracy(clf4, X_test, np.ravel(y_test)),
+                "Accuracy": calculate_accuracy(clf4, X_test, np.ravel(y_test)),
                 "DietsPrescribed": diet_dataset[otherprediction],
                 "Doctor": doctors[otherprediction]
             } 
